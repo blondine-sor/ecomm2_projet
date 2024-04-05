@@ -3,25 +3,28 @@
 
 class User
 {
-    protected string $username;
-    protected string $nom;
-    protected string $prenom;
-    protected string $email;
-    protected string $adresse;
-    protected string $password;
-    protected string $telephone;
-    protected string $token;
+    private string $username;
+    private string $nom;
+    private string $prenom;
+    private string $email;
+    private string $adresse;
+    private string $password;
+    private string $telephone;
+    private string $token;
+    private int $profil;
 
-    public function __construct($u, $n, $p, $e, $a, $pass, $tel, $token)
+
+    public function __construct($u, $n, $p, $e, $pwd, $tel, $token, $a, $profil)
     {
         $this->username = $u;
         $this->nom = $n;
         $this->prenom = $p;
         $this->email = $e;
         $this->adresse = $a;
-        $this->password = $pass;
+        $this->password = $pwd;
         $this->telephone = $tel;
         $this->token = $token;
+        $this->profil = $profil;
     }
 
     public function getUsername()
@@ -56,6 +59,10 @@ class User
     {
         return $this->token;
     }
+    public function getProfil()
+    {
+        return $this->profil;
+    }
 
     public function setUsername($newUsername)
     {
@@ -88,5 +95,9 @@ class User
     public function setToken($newToken)
     {
         $this->token = $newToken;
+    }
+    public function setProfil($newProfil)
+    {
+        $this->profil = $newProfil;
     }
 }
