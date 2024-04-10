@@ -13,13 +13,12 @@
 
 <body>
     <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper cyan lighten-2">
             <a href="../index.php" class="brand-logo"> <img class="materialboxed" width="70" src="../public/images/logoPhp.png">
             </a>
             <a href="../index.php" class="brand-logo center">The Villa</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#"><i class="material-icons ">shopping_basket</i></a></li>
-                <li><a href="#">Connexion</a></li>
+                <li><a href="../view/connexion.php">Connexion</a></li>
                 <li><a href="#">Inscriptions</a></li>
             </ul>
         </div>
@@ -29,61 +28,61 @@
             <div class="row">
                 <div class="input-field col s3">
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="nomUser" type="text" name="username" class="validate">
+                    <input id="nomUser" type="text" name="username" required class="validate">
                     <label for="username">Nom d'utilisateur</label>
                     <span class="helper-text" data-error="Enter atleast 3 characters" data-success="right">HelperText</span>
                 </div>
 
                 <div class="input-field col s3">
                     <i class="material-icons prefix">account_circle</i>
-                    <input placeholder="First Name" id="first_name" name="prenom" type="text" class="validate">
+                    <input placeholder="First Name" id="first_name" required name="prenom" type="text" class="validate">
                     <label for="first_name">First Name</label>
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="Enter atleast 3 characters" data-success="right">Helper text</span>
                 </div>
                 <div class="input-field col s3">
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="last_name" type="text" name="nom" class="validate">
+                    <input id="last_name" type="text" name="nom" required class="validate">
                     <label for="last_name">Last Name</label>
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="Enter atleast 3 characters" data-success="right">Helper text</span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s3">
                     <i class="material-icons prefix">email</i>
-                    <input id="courriel" name="email" type="email" class="validate">
+                    <input id="courriel" name="email" type="email" required class="validate">
                     <label for="email">Email</label>
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="Wrong Format" data-success="right">Helper text</span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s3">
                     <i class="material-icons prefix">phone</i>
-                    <input id="icon_telephone" name="telephone" type="tel" class="validate">
+                    <input id="icon_telephone" name="telephone" type="tel" required class="validate">
                     <label for="icon_telephone">(---)___-____</label>
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="Enter 10 numbers" data-success="right">Helper text</span>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s3">
                     <i class="material-icons prefix">lock</i>
-                    <input id="pwd" name="password" type="password" class="validate">
+                    <input id="pwd" name="password" type="password" required class="validate">
                     <label for="password">Password</label>
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="Enter atleast 5 characters" data-success="right">Helper text</span>
                 </div>
                 <div class="input-field col s3">
                     <i class="material-icons prefix">lock</i>
-                    <input id="pwd" name="password" type="password" class="validate">
+                    <input id="pwd" name="confirm-password" type="password" required class="validate">
                     <label for="password">Confirm Password</label>
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="Enter atleast 5 characters" data-success="right">Helper text</span>
 
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s3">
                     <i class="material-icons prefix">domain</i>
-                    <input id="address" name="adresse" type="text" class="validate">
+                    <input id="address" name="adresse" type="text" required class="validate">
                     <label for="adresse">Address</label>
-                    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    <span class="helper-text" data-error="Enter valid address" data-success="right">Helper text</span>
                 </div>
             </div>
 

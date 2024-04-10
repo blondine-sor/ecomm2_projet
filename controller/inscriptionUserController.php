@@ -52,23 +52,28 @@ try {
                 $adresse = $_POST['adresse'];
                 $telephone = $_POST['telephone'];
                 $pwd = password_hash($password, PASSWORD_DEFAULT);
-                $user = new User(
-                    $username,
-                    $nom,
-                    $prenom,
-                    $email,
-                    $pwd,
-                    $telephone,
-                    " ",
-                    $adresse,
-                    0
-                );
+                $confirmp = $_POST['confirm-password'];
+                if (password_verify($confirmp, $pwd)) {
+                    $user = new User(
+                        $username,
+                        $nom,
+                        $prenom,
+                        $email,
+                        $pwd,
+                        $telephone,
+                        " ",
+                        $adresse,
+                        0
+                    );
 
-                var_dump($user);
+                    echo '<script type="text/javascript">alert("Utilisateur Ajouter!") </script>';
+                    var_dump($user);
 
-                //$controllerIns->AjouterUser($user);
+                    $controllerIns->AjouterUser($user);
+                } else {
+                    echo ("Mot de Passe Incorrecte");
+                }
             }
-            echo "Utilisateur Ajouter";
         }
     }
 } catch (PDOException $ex) {
