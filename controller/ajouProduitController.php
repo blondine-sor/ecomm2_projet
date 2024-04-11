@@ -17,7 +17,7 @@ class AjouProduitController
     }
 }
 
-include_once("C:/wamp64/www/ecomm2_projet/connection/connexion.php");
+include_once("C:/wamp64/www/ecomm2_projet/connection/connexiondb.php");
 try {
 
     $pmodel = new ProduitModel($conn);

@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once("../connection/connexion.php");
+include_once("../connection/connexiondb.php");
 
 ?>
 
@@ -14,6 +14,8 @@ include_once("../connection/connexion.php");
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="./connect.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <title>Produits</title>
@@ -26,7 +28,15 @@ include_once("../connection/connexion.php");
             </a>
             <a href="../index.php" class="brand-logo center">The Villa</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#"><i class="material-icons ">shopping_basket</i></a></li>
+                <li><a href="../cart/panier.php" style="position: relative;"><i class="material-icons ">shopping_basket</i>
+                        <span class="red-text" id="pspan">
+                            <?php
+                            if (isset($_SESSION['panier']) && is_array(($_SESSION['panier']))) {
+                                echo array_sum($_SESSION['panier']);
+                            } ?>
+                        </span>
+                    </a> </li>
+                <li></li>
             </ul>
         </div>
     </nav>
@@ -51,7 +61,7 @@ include_once("../connection/connexion.php");
                                 </p>
                             </div>
                             <div class="card-action">
-                                <a href="ajouter_panier.php?id=<?php echo $row['idproduits']; ?>" class="btn-floating btn-large waves-effect waves-light cyan"><i class="material-icons">add</i></a>
+                                <a href="../cart/ajout_panier.php?id=<?php echo $row['idproduits']; ?>" class="btn-floating btn-large waves-effect waves-light cyan"><i class="material-icons">add</i></a>
                             </div>
                         </div>
                     </div>

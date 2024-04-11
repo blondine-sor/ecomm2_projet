@@ -148,7 +148,7 @@
                 },
 
             },
-            errorElement: 'div',
+            errorElement: 'span',
             errorPlacement: function(error, element) {
                 var placement = $(element).data('error');
                 if (placement) {

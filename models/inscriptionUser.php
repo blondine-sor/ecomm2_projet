@@ -50,6 +50,21 @@ class InscriptionUser
             }
         }
     }
+    public function GestionUtilisateurs()
+    {
+        try {
+            $reponse = $this->bdd->prepare("SELECT * FROM User");
+            $reponse->execute();
+            $utilisateur = array();
+            while ($row = $reponse->fetch(PDO::FETCH_ASSOC)) {
+                $utilisateur[] = new User($row['username'], $row['nom'], $row['prenom'], $row['email'], $row['password'], $row['telephone'], $row['token'], $row['adresse'], $row['profil']);
+            }
+            return $utilisateur;
+        } catch (PDOException $e) {
+            echo "Erreur lors de l'exécution de la requête :" . $e->getMessage();
+            return array();
+        }
+    }
     public function Connexion($username, $pwd)
     {
         $sql = $this->bdd->query("SELECT * FROM User WHERE username='$username'");
@@ -58,7 +73,7 @@ class InscriptionUser
             if (password_verify($pwd, $passwd)) {
                 session_start();
                 $token = random_bytes(30);
-                $sql1 = $this->bdd->query("Update User SET token='$token'WHERE username='$username'");
+                $sql1 = $this->bdd->query("Update User SET token='$token' WHERE username='$username'");
                 $sql1->execute();
                 echo "Connexion établie";
                 $iduser = $res['iduser'];

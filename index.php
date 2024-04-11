@@ -17,6 +17,7 @@ if (isset($_SESSION['connected-user'])) {
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <link type="text/css" rel="stylesheet" href="./view/connect.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">
     </script>
     <title>The Villa</title>
@@ -29,8 +30,17 @@ if (isset($_SESSION['connected-user'])) {
             </a>
             <a href="#" class="brand-logo center">The Villa</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="#"><i class="material-icons ">shopping_basket</i></a></li>
-                <li><a href="./view/connexion.php">Connexion</a></li>
+                <li><a href="./cart/panier.php" style="position: relative;"><i class="material-icons ">shopping_basket</i>
+                        <span class="red-text" id="pspan">
+                            <?php
+                            if (isset($_SESSION['panier']) && is_array(($_SESSION['panier']))) {
+                                echo array_sum($_SESSION['panier']);
+                            } ?>
+                        </span>
+                    </a>
+
+                </li>
+                <li><a href="./controller/connexionController.php">Connexion</a></li>
                 <li><a href="./controller/inscriptionUserController.php">Inscriptions</a></li>
             </ul>
         </div>
@@ -48,7 +58,7 @@ if (isset($_SESSION['connected-user'])) {
                     </p>
                 </div>
                 <div class="card-action">
-                    <a href="./view/produits.php">Don't Hesitate And Reserve</a>
+                    <a href=<?php echo isset($_SESSION['connected-user']) ? "./view/produits.php" : './controller/connexionController.php' ?>>Don't Hesitate And Reserve</a>
                 </div>
             </div>
         </div>
@@ -63,12 +73,17 @@ if (isset($_SESSION['connected-user'])) {
                     </div>
                 </li>
                 <li><a href="#!"><i class="material-icons">cloud</i>Profil</a></li>
-                <li><a href="#!">Gestion Utilisateurs</a></li>
+                <li><a href="./controller/gestUserController.php">Gestion Utilisateurs</a></li>
                 <li>
                     <div class="divider"></div>
                 </li>
                 <li><a class="subheader">Boutique</a></li>
-                <li><a class="waves-effect" href="./controller/ajouProduitController.php"><i class="material-icons">shop</i>Boutique</a></li>
+                <li><a class="waves-effect" href="<?php if (isset($_SESSION['connected-user'])) {
+                                                        if ($profil == 1) echo './controller/ajouProduitController.php';
+                                                        else echo './view/produits.php';
+                                                    } else {
+                                                        echo './controller/connexionController.php';
+                                                    } ?>"><i class="material-icons">shop</i>Boutique</a></li>
             </ul>
             <a href="#" data-target="slide-out" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
 
@@ -85,7 +100,7 @@ if (isset($_SESSION['connected-user'])) {
                     <h5 class="white-text">Footer Content</h5>
                     <p class="grey-text text-lighten-4">All rights reserved to THE VILLA</p>
                 </div>
-                <div class="col l4 offset-l2 s12">
+                <div class="col l4 offset-l2 s12 ">
                     <h5 class="white-text">Links</h5>
                     <ul>
                         <li><a class="grey-text text-lighten-3" href="#!">Contact us 1</a></li>
