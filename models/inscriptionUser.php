@@ -36,6 +36,20 @@ class InscriptionUser
             $user->getProfil(),
         ));
     }
+    public function VerifyUserName($username)
+    {
+
+        $reponse = $this->bdd->prepare("SELECT username FROM User");
+        $reponse->execute();
+        $utilisateur = array();
+        while ($row = $reponse->fetch(PDO::FETCH_ASSOC)) {
+            if ($username == $row['username']) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
     public function Connexion($username, $pwd)
     {
         $sql = $this->bdd->query("SELECT * FROM User WHERE username='$username'");
@@ -51,6 +65,8 @@ class InscriptionUser
                 $nom = $res['nom'];
                 $prenom = $res['prenom'];
                 $profil = $res['profil'];
+                $adresse = $res['adresse'];
+                $tel = $res['telephone'];
 
                 $_SESSION['connected-user'] =
                     [
@@ -58,7 +74,9 @@ class InscriptionUser
                         'token' => $token,
                         'nom' => $nom,
                         'prenom' => $prenom,
-                        'profil' => $profil
+                        'profil' => $profil,
+                        'adresse' => $adresse,
+                        'telephone' => $tel,
                     ];
             } else {
                 echo "Mot de passe incorrecte";

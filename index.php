@@ -48,7 +48,7 @@ if (isset($_SESSION['connected-user'])) {
                     </p>
                 </div>
                 <div class="card-action">
-                    <a href="#">Don't Hesitate And Reserve</a>
+                    <a href="./view/produits.php">Don't Hesitate And Reserve</a>
                 </div>
             </div>
         </div>
@@ -57,7 +57,8 @@ if (isset($_SESSION['connected-user'])) {
                 <li>
                     <div class="user-view">
                         <?php echo isset($_SESSION['connected-user']) ? "Bienvenue " . $prenom : ""    ?>
-                        <a href="" id="confirmation" class="amber-text text-lighten-3 name">Deconnexion</a>
+                        <br />
+                        <a id="confirmation" href="./utils/popup.php" onclick="test()" class="amber-text text-lighten-3 disconn">Deconnexion</a>
 
                     </div>
                 </li>
@@ -109,26 +110,26 @@ if (isset($_SESSION['connected-user'])) {
             $('.sidenav').sidenav();
         });
 
-        var submit = document.querySelector('#confirmation');
+        // var submit = document.querySelector('#confirmation');
 
         /* set onclick on submit input */
-        submit.setAttribute("onclick", "return test()");
+        // submit.setAttribute("onclick", "return test()");
 
         //submit.addEventListener("click", test);
+        var link = "";
 
         function test() {
 
             if (confirm('Voulez vous vous deconnecter ?')) {
                 return true;
-                <?php
-                unset($_SESSION["connected-user"]);
-                ?>
-                alert('Utilisateur Déconnecter');
+
             } else {
                 return false;
             }
 
         }
+
+
         // function popitup(url) {
         //     newwindow = window, open(url, 'name', 'height=200,width=650');
         //     if (window.focus) {
@@ -140,3 +141,4 @@ if (isset($_SESSION['connected-user'])) {
 </body>
 
 </html>
+<?php

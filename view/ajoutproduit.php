@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,13 +22,13 @@
             </a>
             <a href="../index.php" class="brand-logo center">The Villa</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="./produits.php">Produits</a></li>
+                <li><a href="../view/produits.php">Produits</a></li>
             </ul>
         </div>
     </nav>
     <div class="container cyan accent-1">
         <div class="row">
-            <form class="col s12">
+            <form class="col s12" action="../controller/ajouProduitController.php" method="post">
                 <h1>Ajouter Produits</h1>
                 <div class="row">
                     <div class="input-field col s6">
@@ -51,8 +55,9 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s2">
-                        <input id="price" class="materialize-textarea" required name="prix" />
-                        <label for="price">Prix</label>
+                        <input id="input_text" type="number" step="any" required name="prix" />
+                        <label for="input_text">Prix</label>
+
                     </div>
                 </div>
                 <div class="right">

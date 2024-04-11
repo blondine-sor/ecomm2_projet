@@ -15,6 +15,10 @@ class InscriptionUserController
     {
         return $this->model->AjouterUser($user);
     }
+    public function VerifyUserName($username)
+    {
+        return $this->model->VerifyUserName($username);
+    }
 }
 
 $server_name = "localhost";
@@ -27,45 +31,40 @@ try {
 
     $modelins = new InscriptionUser($conn);
     $controllerIns = new InscriptionUserController($modelins);
+
     include("C:/wamp64/www/ecomm2_projet/view/inscription.php");
 
     if (isset($_POST)) {
         extract($_POST);
         if (isset($submit)) {
-            if ($username = "" || $nom = "" || $prenom = "" || $email = "" || $password = "" || $adresse = "" || $telephone = "") {
-                echo 'alert("Veuillez remplir les champs")';
-            } else {
-                // var_dump(
-                //     $_POST['username'],
-                //     $_POST['nom'],
-                //     $_POST['prenom'],
-                //     $_POST['email'],
-                //     $_POST['password'],
-                //     $_POST['adresse'],
-                //     $_POST['telephone']
-                // );
-                $username = $_POST['username'];
-                $nom = $_POST['nom'];
-                $prenom = $_POST['prenom'];
-                $email = $_POST['email'];
-                $password = $_POST['password'];
-                $adresse = $_POST['adresse'];
-                $telephone = $_POST['telephone'];
-                $pwd = password_hash($password, PASSWORD_DEFAULT);
-                $confirmp = $_POST['confirm-password'];
-                if (password_verify($confirmp, $pwd)) {
-                    $user = new User(
-                        $username,
-                        $nom,
-                        $prenom,
-                        $email,
-                        $pwd,
-                        $telephone,
-                        " ",
-                        $adresse,
-                        0
-                    );
 
+            $username = $_POST['username'];
+            $nom = $_POST['nom'];
+            $prenom = $_POST['prenom'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $adresse = $_POST['adresse'];
+            $telephone = $_POST['telephone'];
+            $pwd = password_hash($password, PASSWORD_DEFAULT);
+            $confirmp = $_POST['confirm-password'];
+
+            $verifyUserName = $controllerIns->VerifyUserName($username);
+
+            if (!$verifyUserName) {
+
+                $user = new User(
+                    $username,
+                    $nom,
+                    $prenom,
+                    $email,
+                    $pwd,
+                    $telephone,
+                    " ",
+                    $adresse,
+                    0
+
+                );
+                if (password_verify($confirmp, $pwd)) {
                     echo '<script type="text/javascript">alert("Utilisateur Ajouter!") </script>';
                     var_dump($user);
 
@@ -73,6 +72,8 @@ try {
                 } else {
                     echo ("Mot de Passe Incorrecte");
                 }
+            } else {
+                echo '<script type="text/javascript">alert("Utilisateur Existant") </script>';
             }
         }
     }

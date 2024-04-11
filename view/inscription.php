@@ -91,73 +91,72 @@
         </form>
     </div>
     <script>
-        $(document).ready(function() {
-            $('#signup-form').validate({
-                rules: {
-                    username: {
-                        required: true,
-                        minlength: 3
-                    },
-                    nom: {
-                        required: true,
-                        minlength: 3
-                    },
-                    prenom: {
-                        required: true,
-                        minlength: 3
-                    },
-                    telephone: {
-                        required: true,
-                        minlength: 20,
-                        maxlength: 20
-                    },
-                    password: {
-                        required: true,
-                        minlength: 4
-                    },
-                    adresse: {
-                        required: true,
-                        minlength: 3
-                    }
+        $('#signup-form').validate({
+            rules: {
+                username: {
+                    required: true,
+                    minlength: 3
                 },
-                messages: {
-                    username: {
-                        require: "Veuillez Remplir le champ",
-                        text: true,
-                        minlength: "Veuillez entrer au moins 3 caractères"
-                    },
-                    nom: {
-                        require: "Veuillez Remplir le champ",
-                        text: true,
-                        minlength: "Veuillez entrer au moins 3 caractères"
-                    },
-                    prenom: {
-                        require: "Veuillez Remplir le champ",
-                        text: true,
-                        minlength: "Veuillez entrer au moins 3 caractères"
-                    },
-                    telephone: {
-                        require: "Veuillez Remplir le champ",
-                        text: true,
-                        minlength: "Veuillez entrer au moins 10 chiffres",
-                        maxlength: "Vous ne pouvez pas entrer plus de 10 chiffres"
-                    },
-                    adresse: {
-                        require: "Veuillez Remplir le champ",
-                        text: true,
-                        minlength: "Veuillez entrer au moins 3 caractères"
-                    },
-
+                nom: {
+                    required: true,
+                    minlength: 3
                 },
-                errorClass: 'invalid',
-                validClass: 'valid',
-                errorPlacement: function(error, element) {
-                    $(element)
-                        .closest("form")
-                        .find("label[for='" + element.attr("id") + "']")
-                        .attr('data-error', error.text());
+                prenom: {
+                    required: true,
+                    minlength: 3
+                },
+                telephone: {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 20
+                },
+                password: {
+                    required: true,
+                    minlength: 5
+                },
+                adresse: {
+                    required: true,
+                    minlength: 3
                 }
-            });
+            },
+            messages: {
+                username: {
+                    require: "Veuillez Remplir le champ",
+                    text: true,
+                    minlength: "Veuillez entrer au moins 3 caractères"
+                },
+                nom: {
+                    require: "Veuillez Remplir le champ",
+                    text: true,
+                    minlength: "Veuillez entrer au moins 3 caractères"
+                },
+                prenom: {
+                    require: "Veuillez Remplir le champ",
+                    text: true,
+                    minlength: "Veuillez entrer au moins 3 caractères"
+                },
+                telephone: {
+                    require: "Veuillez Remplir le champ",
+                    text: true,
+                    minlength: "Veuillez entrer au moins 10 chiffres",
+                    maxlength: "Vous ne pouvez pas entrer plus de 10 chiffres"
+                },
+                adresse: {
+                    require: "Veuillez Remplir le champ",
+                    text: true,
+                    minlength: "Veuillez entrer au moins 3 caractères"
+                },
+
+            },
+            errorElement: 'div',
+            errorPlacement: function(error, element) {
+                var placement = $(element).data('error');
+                if (placement) {
+                    $(placement).append(error)
+                } else {
+                    error.insertAfter(element);
+                }
+            }
         });
     </script>
 </body>

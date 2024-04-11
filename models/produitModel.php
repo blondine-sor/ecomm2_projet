@@ -23,7 +23,7 @@ class ProduitModel
 
     public function AjouterProduit(Produit $produit)
     {
-        $sql = $this->bdd->prepare("INSERT INTO Produits VALUES(NULL,?,?,?,?,)");
+        $sql = $this->bdd->prepare("INSERT INTO Produits VALUES(NULL,?,?,?,?)");
         $sql->execute(array(
             $produit->getName(),
             $produit->getImage(),
