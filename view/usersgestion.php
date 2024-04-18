@@ -27,6 +27,7 @@
                     <th>No</th>
                     <th>Utilisateur</th>
                     <th>Changer</th>
+                    <th>Supprimer</th>
                 </tr>
             </thead>
             <tbody>
@@ -34,7 +35,8 @@
                     <tr>
                         <td></td>
                         <td><?php echo $user->getUsername() ?></td>
-                        <td><a href="../cart/ajout_panier.php?id=<?php echo $user->getProfil(); ?>" class="btn-floating btn-large waves-effect waves-light cyan"><i class="material-icons">add</i></a></td>
+                        <td><a href="../controller/gestionUser.php?username=<?= $user->getUsername(); ?>" class="btn-floating btn-large waves-effect waves-light cyan"><i class="material-icons">add</i></a></td>
+                        <td><a href="../controller/gestionUser.php?username=<?= $user->getUsername() ?>" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">remove_circle</i></a></td>
                     </tr>
                 <?php endforeach ?>
             </tbody>

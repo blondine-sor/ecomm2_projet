@@ -53,7 +53,7 @@ class InscriptionUser
     public function GestionUtilisateurs()
     {
         try {
-            $reponse = $this->bdd->prepare("SELECT * FROM User");
+            $reponse = $this->bdd->prepare("SELECT * FROM User WHERE profil='0'");
             $reponse->execute();
             $utilisateur = array();
             while ($row = $reponse->fetch(PDO::FETCH_ASSOC)) {
@@ -82,6 +82,10 @@ class InscriptionUser
                 $profil = $res['profil'];
                 $adresse = $res['adresse'];
                 $tel = $res['telephone'];
+                $email = $res['email'];
+                $password = $res['password'];
+
+                $user = new User($username, $nom, $prenom, $email, $password, $tel, $token, $adresse, $profil);
 
                 $_SESSION['connected-user'] =
                     [
@@ -91,13 +95,22 @@ class InscriptionUser
                         'prenom' => $prenom,
                         'profil' => $profil,
                         'adresse' => $adresse,
+                        'email' => $email,
                         'telephone' => $tel,
+
                     ];
+                $_SESSION['connecter'] = [
+                    'userid' => $iduser,
+                    'user' =>  new User($username, $nom, $prenom, $email, $password, $tel, $token, $adresse, $profil),
+                ];
             } else {
                 echo "Mot de passe incorrecte";
             }
         } else {
             echo "Login  incorrecte";
         }
+    }
+    public function UpdateUser()
+    {
     }
 }

@@ -84,7 +84,37 @@ if (isset($_GET['del'])) {
                 </tr>
             </tfoot>
         </table>
+        <div id="paypal-button-container">
+
+        </div>
     </section>
+    <script src="https://www.paypal.com/sdk/js?client-id=AbYLddpPdGR6NYhDIHMSYSrBEH5MaLHq-jP7PTDHSl70OGsjraREejVXigkdR7TEJTYeUkwl5ym8n8eh&currency=CAD"></script>
+    <script>
+        paypal.Buttons({
+
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '<?= $total ?>'
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Transaction complété par ' + details.payer.name.given_name + '!');
+                });
+            },
+            onError: function(err) {
+                console.log("erreur dans le paiement", err);
+                alert("paiement échoué!");
+            }
+
+        }).render('#paypal-button-container').then(function() {
+
+        });
+    </script>
 </body>
 
 </html>

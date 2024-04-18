@@ -6,7 +6,10 @@ if (isset($_SESSION['connected-user'])) {
     $nom =  $_SESSION['connected-user']['nom'];
     $prenom =  $_SESSION['connected-user']['prenom'];
     $profil =  $_SESSION['connected-user']['profil'];
+    $telephone = $_SESSION['connected-user']['telephone'];
+    $adresse = $_SESSION['connected-user']['adresse'];
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -72,7 +75,8 @@ if (isset($_SESSION['connected-user'])) {
 
                     </div>
                 </li>
-                <li><a href="#!"><i class="material-icons">cloud</i>Profil</a></li>
+                <li><a href="<?php echo isset($_SESSION['connected-user']) ? "./view/profil.php" : './controller/connexionController.php' ?>">
+                        <i class="material-icons">cloud</i>Profil</a></li>
                 <li><a href="./controller/gestUserController.php">Gestion Utilisateurs</a></li>
                 <li>
                     <div class="divider"></div>

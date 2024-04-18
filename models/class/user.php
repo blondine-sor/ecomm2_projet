@@ -3,7 +3,7 @@
 
 class User
 {
-    private string $username;
+    public string $username;
     private string $nom;
     private string $prenom;
     private string $email;
@@ -99,5 +99,17 @@ class User
     public function setProfil($newProfil)
     {
         $this->profil = $newProfil;
+    }
+    public function AfficherUser()
+    {
+        echo $this->username;
+        echo $this->nom;
+        echo $this->prenom;
+        echo $this->email;
+        echo $this->adresse;
+        echo $this->password;
+        echo $this->telephone;
+        echo $this->token;
+        echo $this->profil;
     }
 }
