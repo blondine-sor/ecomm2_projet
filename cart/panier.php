@@ -104,6 +104,7 @@ if (isset($_GET['del'])) {
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
                     alert('Transaction complété par ' + details.payer.name.given_name + '!');
+                    <?php unset($_SESSION['panier']) ?>
                 });
             },
             onError: function(err) {

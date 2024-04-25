@@ -85,7 +85,7 @@ class InscriptionUser
                 $email = $res['email'];
                 $password = $res['password'];
 
-                $user = new User($username, $nom, $prenom, $email, $password, $tel, $token, $adresse, $profil);
+                var_dump($iduser, $nom, $prenom, $profil, $adresse, $tel, $email);
 
                 $_SESSION['connected-user'] =
                     [
@@ -97,12 +97,9 @@ class InscriptionUser
                         'adresse' => $adresse,
                         'email' => $email,
                         'telephone' => $tel,
+                        'password' => $password,
 
                     ];
-                $_SESSION['connecter'] = [
-                    'userid' => $iduser,
-                    'user' =>  new User($username, $nom, $prenom, $email, $password, $tel, $token, $adresse, $profil),
-                ];
             } else {
                 echo "Mot de passe incorrecte";
             }
@@ -110,7 +107,59 @@ class InscriptionUser
             echo "Login  incorrecte";
         }
     }
-    public function UpdateUser()
+
+    public function UpdateName($nom, $id)
     {
+        try {
+            $sql = $this->bdd->prepare("Update User SET nom='$nom' WHERE iduser='$id'");
+            $sql->execute();
+        } catch (PDOException $e) {
+            echo "Erreur de la requete :" . $e->getMessage();
+        }
+    }
+    public function UpdatePrenom($prenom, $id)
+    {
+        try {
+            $sql = $this->bdd->prepare("Update User SET prenom='$prenom' WHERE iduser='$id'");
+            $sql->execute();
+        } catch (PDOException $e) {
+            echo "Erreur de la requete :" . $e->getMessage();
+        }
+    }
+    public function UpdateTel($tel, $id)
+    {
+        try {
+            $sql = $this->bdd->prepare("Update User SET telephone='$tel' WHERE iduser='$id'");
+            $sql->execute();
+        } catch (PDOException $e) {
+            echo "Erreur de la requete :" . $e->getMessage();
+        }
+    }
+    public function UpdateEmail($email, $id)
+    {
+        try {
+            $sql = $this->bdd->prepare("Update User SET email='$email' WHERE iduser='$id'");
+            $sql->execute();
+        } catch (PDOException $e) {
+            echo "Erreur de la requete :" . $e->getMessage();
+        }
+    }
+    public function UpdateAdress($adresse, $id)
+    {
+        try {
+            $sql = $this->bdd->prepare("Update User SET adresse='$adresse' WHERE iduser='$id'");
+            $sql->execute();
+        } catch (PDOException $e) {
+            echo "Erreur de la requete :" . $e->getMessage();
+        }
+    }
+    public function UpdatePass($password, $id)
+    {
+        try {
+            $sql = $this->bdd->prepare("Update User SET password='$password' WHERE iduser='$id'");
+            $sql->execute();
+        } catch (PDOException $e) {
+            echo "Erreur de la requete :" . $e->getMessage();
+        }
     }
 }

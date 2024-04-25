@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 if (isset($_SESSION['connected-user'])) {
     $iduser = $_SESSION['connected-user']['userid'];
     $token = $_SESSION['connected-user']['token'];
@@ -77,7 +78,10 @@ if (isset($_SESSION['connected-user'])) {
                 </li>
                 <li><a href="<?php echo isset($_SESSION['connected-user']) ? "./view/profil.php" : './controller/connexionController.php' ?>">
                         <i class="material-icons">cloud</i>Profil</a></li>
-                <li><a href="./controller/gestUserController.php">Gestion Utilisateurs</a></li>
+                <li><a href="<?php if (isset($_SESSION['connected-user'])) {
+                                    if ($profil == 1) echo "./controller/gestUserController.php";
+                                    else echo "#";
+                                } ?>">Gestion Utilisateurs</a></li>
                 <li>
                     <div class="divider"></div>
                 </li>

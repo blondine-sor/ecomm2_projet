@@ -22,6 +22,7 @@ session_start();
             </a>
             <a href="../index.php" class="brand-logo center">The Villa</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="../view/editionProduit.php">Editer Produit</a> </li>
                 <li><a href="../view/produits.php">Produits</a></li>
             </ul>
         </div>

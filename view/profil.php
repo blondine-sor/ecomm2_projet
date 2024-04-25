@@ -32,7 +32,7 @@ if (isset($_SESSION['connected-user'])) {
             <div class="col s12 m7 l8">
                 <div class="container">
                     <a href="../index.php" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">backspace</i></a>
-                    <form action="" method="post">
+                    <form action="../controller/gestProfilController.php" method="post">
                         <legend class="header">Profil </legend>
                         <fieldset>
                             <input type="number" name="iduser" id="id" hidden value="<?= $iduser ?>">
@@ -78,7 +78,7 @@ if (isset($_SESSION['connected-user'])) {
                                     <label class="active" for="cpwd">Comfirm Password</label>
                                 </div>
                             </div>
-                            <button class="btn waves-effect waves-light" type="submit" name="submit">Submit
+                            <button class="btn waves-effect waves-light" type="submit" name="modifier">Submit
                                 <i class="material-icons right">send</i>
                             </button>
                         </fieldset>
