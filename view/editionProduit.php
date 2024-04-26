@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once("../connection/connexiondb.php");
-
 ?>
 
 
@@ -53,7 +52,7 @@ include_once("../connection/connexiondb.php");
                                 </p>
                             </div>
                             <div class="card-action">
-                                <a href="./editerProduit.php?id=<?php echo $row['idproduits']; ?>" class="btn-floating btn-large waves-effect waves-light cyan"><i class="material-icons">edit</i></a>
+                                <a href="./to_editProduit.php?id=<?php echo $row['idproduits']; ?>" class="btn-floating btn-large waves-effect waves-light cyan"><i class="material-icons">edit</i></a>
                             </div>
                         </div>
                     </div>

@@ -31,4 +31,40 @@ class ProduitModel
             $produit->getPrix(),
         ));
     }
+    public function UpdateProduitName($nom_produit, $id)
+    {
+        try {
+            $sql = $this->bdd->prepare("UPDATE Produits SET produit_name='$nom_produit' WHERE idproduits='$id'");
+            $sql->execute();
+        } catch (PDOException $ex) {
+            echo "Erreur de la requete :" . $ex->getMessage();
+        }
+    }
+    public function UpdateProduitImage($nom_image, $id)
+    {
+        try {
+            $sql = $this->bdd->prepare("UPDATE Produits SET produit-image ='$nom_image' WHERE idproduits='$id'");
+            $sql->execute();
+        } catch (PDOException $ex) {
+            echo "Erreur de la requete :" . $ex->getMessage();
+        }
+    }
+    public function UpdateProduitDesc($desc, $id)
+    {
+        try {
+            $sql = $this->bdd->prepare("UPDATE Produits SET description='$desc' WHERE idproduits='$id'");
+            $sql->execute();
+        } catch (PDOException $ex) {
+            echo "Erreur de la requete :" . $ex->getMessage();
+        }
+    }
+    public function UpdateProduitPrix($prix, $id)
+    {
+        try {
+            $sql = $this->bdd->prepare("UPDATE Produits SET prix='$prix' WHERE idproduits='$id'");
+            $sql->execute();
+        } catch (PDOException $ex) {
+            echo "Erreur de la requete :" . $ex->getMessage();
+        }
+    }
 }
