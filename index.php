@@ -92,6 +92,7 @@ if (isset($_SESSION['connected-user'])) {
                                                     } else {
                                                         echo './controller/connexionController.php';
                                                     } ?>"><i class="material-icons">shop</i>Boutique</a></li>
+                <li><a class="waves-effect" href="<?php echo isset($_SESSION['connected-user']) ? './view/historiqueUser.php' : './controller/connexionController.php' ?>">Historique</a></li>
             </ul>
             <a href="#" data-target="slide-out" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
 

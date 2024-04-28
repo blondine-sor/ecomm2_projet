@@ -5,6 +5,7 @@ include_once("../connection/connexiondb.php");
 
 if (isset($_SESSION['connected-user'])) {
     $prenom = $_SESSION['connected-user']['prenom'];
+    $id = $_SESSION['connected-user']['userid'];
 }
 
 if (isset($_GET['del'])) {
@@ -63,6 +64,12 @@ if (isset($_GET['del'])) {
 
                 foreach ($produits as $produit) :
                     $total = $total + $produit['prix'] * $_SESSION['panier'][$produit['idproduits']];
+                    try {
+                        $commande = $conn->prepare("INSERT INTO Commande VALUES(NULL,?,?) ");
+                        $commande->execute(array($id, $produit['idproduits']));
+                    } catch (PDOException $e) {
+                        echo "Erreur de connexion" . $e->getMessage();
+                    }
 
             ?>
                     <tbody>
@@ -104,7 +111,7 @@ if (isset($_GET['del'])) {
             onApprove: function(data, actions) {
                 return actions.order.capture().then(function(details) {
                     alert('Transaction complété par ' + details.payer.name.given_name + '!');
-                    <?php unset($_SESSION['panier']) ?>
+                    <?php $total = 0 ?>
                 });
             },
             onError: function(err) {
@@ -112,9 +119,7 @@ if (isset($_GET['del'])) {
                 alert("paiement échoué!");
             }
 
-        }).render('#paypal-button-container').then(function() {
-
-        });
+        }).render('#paypal-button-container').then(function() {});
     </script>
 </body>
 
